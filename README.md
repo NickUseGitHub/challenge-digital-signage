@@ -5,6 +5,7 @@
 - Assume that you are assigned to implement the digital signage platform (Ads) 
 - 1 ads campaign can contains many ads(s) (imaging campaign is a playlist)
 - Each ads is one of these type image, animated image (gif) or video (mp4)
+- Each ads (image, animated image) should be able to set displaay duration in seconds (5 secs, 10 secs, ...) 
 - Each campagin must be able to apply condition such as start date, end date, time schedule and kiosk.
 - If more than 1 campaigns are eligible to display, kiosk should ramdomly display 1 campaign
 
