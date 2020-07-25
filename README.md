@@ -7,7 +7,7 @@
 - Each ads is one of these type image, animated image (gif) or video (mp4)
 - Each ads (image, animated image) should be able to set displaay duration in seconds (5 secs, 10 secs, ...) 
 - Each campagin must be able to apply condition such as start date, end date, time schedule and kiosk.
-- If more than 1 campaigns are eligible to display, kiosk should ramdomly display 1 campaign
+- If more than 1 campaigns are eligible to display, kiosk should randomly display 1 campaign
 
 #### Example Use case
 John need to create ads campaign that distrbute to kiosks in his network
