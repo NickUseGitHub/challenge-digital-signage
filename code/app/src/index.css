@@ -18046,6 +18046,11 @@ video {
           animation: bounce 1s infinite;
 }
 
+body,
+html {
+  height: 100%;
+}
+
 .worksans {
   font-family: 'Work Sans', sans-serif;
 }
