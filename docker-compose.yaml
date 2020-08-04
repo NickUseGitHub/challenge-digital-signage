@@ -8,3 +8,11 @@ services:
       - 80
     ports: 
       - 3000:80
+
+  node_app:
+    build: 
+      context: ./code/api
+    expose: 
+      - 3001
+    ports: 
+      - 3001:3001
