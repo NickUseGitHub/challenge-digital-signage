@@ -16,7 +16,7 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "yarn tailwind:css && react-scripts start",
+    "dev": "yarn tailwind:css && react-scripts start",
     "build": "yarn tailwind:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

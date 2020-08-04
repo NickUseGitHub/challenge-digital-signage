@@ -1,0 +1,29 @@
+{
+  "name": "challenge-digital-signage",
+  "version": "1.0.0",
+  "description": ":warning: Please read the following requirement and condition before coding! - Assume that you are assigned to implement the digital signage platform (Ads)  - 1 ads campaign can contains many ads(s) (imaging campaign is a playlist) - Each ads is one of these type image, animated image (gif) or video (mp4) - Each ads (image, animated image) should be able to set displaay duration in seconds (5 secs, 10 secs, ...)  - Each campagin must be able to apply condition such as start date, end date, time schedule and kiosk. - If more than 1 campaigns are eligible to display, kiosk should randomly display 1 campaign",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NickUseGitHub/challenge-digital-signage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NickUseGitHub/challenge-digital-signage/issues"
+  },
+  "homepage": "https://github.com/NickUseGitHub/challenge-digital-signage#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.8.0",
+    "@typescript-eslint/parser": "^3.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.5",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "prettier": "^2.0.5"
+  }
+}
