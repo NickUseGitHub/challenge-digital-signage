@@ -1,0 +1,10 @@
+version: "3"
+services: 
+  app_static:
+    image: nginx:1.19.1
+    volumes: 
+      - ./code/app/build:/usr/share/nginx/html
+    expose: 
+      - 80
+    ports: 
+      - 3000:80
