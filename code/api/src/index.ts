@@ -1,17 +1,60 @@
-import express, { Response } from 'express'
+import Koa from 'koa'
+import { SwaggerAPI } from 'koa-joi-router-docs'
+import koaSwagger from 'koa2-swagger-ui'
+import KoaRouter, { Joi } from 'koa-joi-router'
 
-const app = express()
+const app = new Koa()
 const port = 3001
 
-app.get('/', function home(_, res: Response) {
-  res.send('Hello worlddd eoeo')
+const swaggerAPI = new SwaggerAPI()
+const apiRoute = KoaRouter()
+
+apiRoute.prefix('/apis')
+apiRoute.route({
+  method: 'get',
+  path: '/hello',
+  validate: {
+    query: {
+      name: Joi.string().required(),
+    },
+  },
+  handler: (ctx) => {
+    ctx.status = 201
+    ctx.body = {
+      hello: 'world',
+    }
+  },
 })
 
-app.listen(port, function (err) {
-  if (err) {
-    console.error('Something went wrong with app')
-    return
-  }
+swaggerAPI.addJoiRouter(apiRoute)
 
-  console.log(`App listen on port ${port}`)
+const spec = swaggerAPI.generateSpec({
+  info: {
+    title: 'Backend API',
+    description: 'API Docs',
+    version: '1.0',
+  },
+  basePath: '/',
+  tags: [
+    /* This could be populated to show our API in sections in UI */
+  ],
+})
+
+// Swagger JSON Doc
+apiRoute.get('/_api.json', async (ctx) => {
+  ctx.body = JSON.stringify(spec, null, 2)
+})
+
+app.use(apiRoute.middleware())
+app.use(
+  koaSwagger({
+    routePrefix: '/api-docs',
+    swaggerOptions: {
+      url: '/apis/_api.json',
+    },
+  }),
+)
+
+app.listen(port, function () {
+  console.log(`App is listen on port: ${port}`)
 })
