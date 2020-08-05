@@ -1,10 +1,10 @@
 import React from 'react'
-import VideoAds from './components/videoAds/VideoAds'
+import Loading from 'components/Loading'
 
 function App() {
   return (
     <div>
-      <VideoAds />
+      <Loading />
     </div>
   )
 }
