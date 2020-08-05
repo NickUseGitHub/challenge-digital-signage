@@ -3,7 +3,7 @@ import { ImageAds, VideoAds } from './ads'
 export interface CampaignAds {
   id: string
   name: string
-  ads: ImageAds | VideoAds
+  ads: Array<ImageAds | VideoAds>
 }
 
 export interface ShowingCampaignAds {
