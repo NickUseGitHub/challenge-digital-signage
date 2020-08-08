@@ -1,8 +1,8 @@
-import { CampaignAds } from '@app/types/campaignAds'
 import { ImageAds } from '@app/types/ads'
+import { CampaignAds as FrontCampaignAds } from '@app/types/campaignAds'
 
 export function getCampaignAdsList(kiosTag: string) {
-  const campaignAdsList: CampaignAds[] = [
+  const campaignAdsList: FrontCampaignAds[] = [
     {
       id: '1',
       name: 'testCam naja',
