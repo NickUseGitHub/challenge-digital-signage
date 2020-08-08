@@ -1,20 +1,13 @@
-import React, { useState } from 'react'
-import Loading from 'components/Loading'
-import { ShowingCampaignAds } from 'types/campaignAds'
+import React from 'react'
+import AdsScreen from 'components/AdsScreen'
+import ShowingCampaignAdsProvider from 'contexts/ShowingCampaignAds'
 
 function App() {
-  const [showingCampaignAds, setShowingCampaignAds] = useState<
-    ShowingCampaignAds
-  >({
-    campaignAdsList: [],
-  })
-
-  const isLoading =
-    !showingCampaignAds ||
-    !showingCampaignAds.campaignAdsList ||
-    showingCampaignAds.campaignAdsList.length === 0
-
-  return <div>{isLoading && <Loading />}</div>
+  return (
+    <ShowingCampaignAdsProvider>
+      <AdsScreen />
+    </ShowingCampaignAdsProvider>
+  )
 }
 
 export default App
