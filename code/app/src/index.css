@@ -18063,9 +18063,17 @@ html {
   outline: none;
 }
 
+.vh-full {
+  height: 100vh;
+}
+
 @media (min-width: 640px) {
   .sm\:vh-75 {
     height: 75vh;
+  }
+
+  .sm\:vh-full {
+    height: 100vh;
   }
 }
 
@@ -18073,17 +18081,29 @@ html {
   .md\:vh-75 {
     height: 75vh;
   }
+
+  .md\:vh-full {
+    height: 100vh;
+  }
 }
 
 @media (min-width: 1024px) {
   .lg\:vh-75 {
     height: 75vh;
   }
+
+  .lg\:vh-full {
+    height: 100vh;
+  }
 }
 
 @media (min-width: 1280px) {
   .xl\:vh-75 {
     height: 75vh;
+  }
+
+  .xl\:vh-full {
+    height: 100vh;
   }
 }
 

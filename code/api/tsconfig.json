@@ -4,15 +4,13 @@
     "esModuleInterop": true,
     "target": "es6",
     "noImplicitAny": true,
-    "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
-    "baseUrl": "./src",
+    "baseUrl": "src",
+    "moduleResolution": "node",
+    "types": ["node"],
     "paths": {
-      "*": [
-        "*",
-        "node_modules/*"
-      ]
+      "@app/*": ["../../app/src/*"]
     }
-},
+  }
 }
