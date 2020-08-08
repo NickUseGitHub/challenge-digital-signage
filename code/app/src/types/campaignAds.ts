@@ -8,5 +8,5 @@ export interface CampaignAds {
 
 export interface ShowingCampaignAds {
   campaignAdsList: CampaignAds[]
-  queryDate?: number
+  queryDate: number
 }

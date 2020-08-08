@@ -48,7 +48,11 @@ const firstCampaignAds: CampaignAds = {
       ),
     },
   ],
-  timeRanges: [getTimeRange('08:00', '12:00'), getTimeRange('17:00', '18:00')],
+  timeRanges: [
+    getTimeRange('00:17:15', '07:00'),
+    getTimeRange('08:00', '12:00'),
+    getTimeRange('17:00', '23:59'),
+  ],
 }
 
 const secondCampaignAds: CampaignAds = {
@@ -100,7 +104,7 @@ const secondCampaignAds: CampaignAds = {
 
 const thirdCampaignAds: CampaignAds = {
   id: 1,
-  name: 'Campaign 2',
+  name: 'Campaign 3',
   kiosTags: ['K03'],
   ads: [
     {
@@ -120,7 +124,7 @@ const thirdCampaignAds: CampaignAds = {
     {
       startTime: getTimestamp(
         getDate({
-          date: 17,
+          date: 8,
           month: 8,
           year: '2020',
         }),
@@ -134,7 +138,11 @@ const thirdCampaignAds: CampaignAds = {
       ),
     },
   ],
-  timeRanges: [getTimeRange('12:00', '13:00'), getTimeRange('19:00', '22:00')],
+  timeRanges: [
+    getTimeRange('00:00', '02:00'),
+    getTimeRange('12:00', '13:00'),
+    getTimeRange('23:00', '23:59'),
+  ],
 }
 
 export const campaignAdsList: CampaignAds[] = [

@@ -9,13 +9,17 @@ export default function getTimeRange(
 ): null | Schedule {
   if (!startTime || !endTime) return null
 
+  if (endTime === '00:00') {
+    console.warn(`[${startTime} - ${endTime}]Should not set endTime as 00:00`)
+  }
+
   const currentDate = new Date()
   const date = currentDate.getDate()
   const month = currentDate.getMonth() + 1
   const year = String(currentDate.getFullYear())
 
-  const [startHour, startMinute] = startTime.split(':')
-  const [endHour, endMinute] = endTime.split(':')
+  const [startHour, startMinute, startSecond] = startTime.split(':')
+  const [endHour, endMinute, endSecond] = endTime.split(':')
 
   return {
     startTime: getTimestamp(
@@ -25,6 +29,7 @@ export default function getTimeRange(
         year,
         hour: startHour,
         minute: startMinute,
+        second: startSecond,
       }),
     ),
     endTime: getTimestamp(
@@ -34,6 +39,7 @@ export default function getTimeRange(
         year,
         hour: endHour,
         minute: endMinute,
+        second: endSecond,
       }),
     ),
   }

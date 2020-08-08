@@ -1,8 +1,11 @@
 import flow from 'lodash/flow'
-// import { CampaignAds as FrontCampaignAds } from '@app/types/campaignAds'
-import { CampaignAds } from './types'
+import {
+  ShowingCampaignAds,
+  CampaignAds as FrontendCampaignAds,
+} from '@app/types/campaignAds'
+import { CampaignAds, Schedule } from './types'
 import { campaignAdsList } from './seeds'
-import { getTimestamp } from '../../utils/dates'
+import { getTimestamp, isDateInRange } from '../../utils/dates'
 
 function getCampaignAdsListFromKiosTag(kiosTag: string): CampaignAds[] {
   return campaignAdsList.filter(function filterByKiosTag(campaignAds) {
@@ -13,7 +16,7 @@ function getCampaignAdsListFromKiosTag(kiosTag: string): CampaignAds[] {
 function filterCalculateDateToShowCampaignAds(
   filterBy: 'dateRanges' | 'timeRanges',
 ) {
-  return function filterCampaignAdsBy(
+  return function filterCampaignAds(
     campaignAdsList: CampaignAds[],
   ): CampaignAds[] {
     const currentDateTimestamp = getTimestamp(new Date())
@@ -26,8 +29,11 @@ function filterCalculateDateToShowCampaignAds(
         ) {
           return (
             isNowPublishing ||
-            (dateRange.startTime < currentDateTimestamp &&
-              dateRange.endTime > currentDateTimestamp)
+            isDateInRange(
+              dateRange.startTime,
+              dateRange.endTime,
+              currentDateTimestamp,
+            )
           )
         },
         false)
@@ -36,10 +42,55 @@ function filterCalculateDateToShowCampaignAds(
   }
 }
 
-export function getCampaignAdsList(kiosTag: string) {
+function transformCampaignAdsListIntoShowingCampaignAds(
+  campaignAdsList: CampaignAds[],
+): ShowingCampaignAds {
+  const currentDateTimestamp = getTimestamp(new Date())
+
+  const scheduleList: Schedule[] = campaignAdsList.reduce(
+    function getScheduleRangeTimeEachCampaign(prevScheduleList, campaignAds) {
+      return [
+        ...prevScheduleList,
+        ...campaignAds.timeRanges.filter(function getOnlyScheduleComparedToNow(
+          timeRange,
+        ) {
+          return isDateInRange(
+            timeRange.startTime,
+            timeRange.endTime,
+            currentDateTimestamp,
+          )
+        },
+        []),
+      ]
+    },
+    [],
+  )
+
+  const minSchedule = Math.min(
+    ...scheduleList.map((schedule) => schedule.endTime),
+  )
+
+  return {
+    campaignAdsList: campaignAdsList.map(
+      function transformToFrontendCampaignAds(
+        campaignAds,
+      ): FrontendCampaignAds {
+        return {
+          id: campaignAds.id,
+          ads: campaignAds.ads,
+          name: campaignAds.name,
+        }
+      },
+    ),
+    queryDate: minSchedule,
+  }
+}
+
+export function getCampaignAdsList(kiosTag: string): ShowingCampaignAds {
   return flow([
     getCampaignAdsListFromKiosTag,
     filterCalculateDateToShowCampaignAds('dateRanges'),
     filterCalculateDateToShowCampaignAds('timeRanges'),
+    transformCampaignAdsListIntoShowingCampaignAds,
   ])(kiosTag)
 }
