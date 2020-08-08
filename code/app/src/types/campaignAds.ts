@@ -1,12 +1,12 @@
 import { ImageAds, VideoAds } from './ads'
 
 export interface CampaignAds {
-  id: string
+  id: number
   name: string
   ads: Array<ImageAds | VideoAds>
 }
 
 export interface ShowingCampaignAds {
   campaignAdsList: CampaignAds[]
-  queryDate?: string
+  queryDate?: number
 }

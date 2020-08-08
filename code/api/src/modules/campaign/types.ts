@@ -1,10 +1,12 @@
 import { CampaignAds as FrontCampaignAds } from '@app/types/campaignAds'
 
-interface Schedule {
-  startTime: string
-  endTime: string
+export interface Schedule {
+  startTime: number
+  endTime: number
 }
 
 export interface CampaignAds extends FrontCampaignAds {
-  schedule: Schedule[]
+  kiosTags: string[]
+  dateRanges: Schedule[]
+  timeRanges?: Schedule[]
 }
