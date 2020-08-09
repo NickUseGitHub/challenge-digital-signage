@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { shuffle } from 'lodash'
+
 import {
   AdType,
   VideoAds as VideoAdsType,
   ImageAds as ImageAdsType,
 } from 'types/ads'
-import { shuffle } from 'lodash'
 import ImageAds from './imageAds/ImageAds'
 import VideoAds from './videoAds/VideoAds'
 

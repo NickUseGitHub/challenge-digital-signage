@@ -23,16 +23,23 @@ export default function CampaignAdsList({
     [showingCampaignAds],
   )
 
+  const [campaignAds] = campaignAdsList
+
   const onAllAdsFinishPlay = () => {
     const [, ...newCampaignAdsList] = campaignAdsList
 
     setCampaignAdsList(
       newCampaignAdsList && newCampaignAdsList.length > 0
-        ? newCampaignAdsList // remove
-        : showingCampaignAds?.campaignAdsList || [], // play new loop
+        ? newCampaignAdsList // remove played campaignAdsList
+        : (showingCampaignAds?.campaignAdsList || [])
+            .filter(function filterLastCampaignAdsToPreventShowAtFirst(
+              eachCampaignAds,
+            ) {
+              return eachCampaignAds.id !== campaignAds.id
+            })
+            .concat(campaignAds), // play new loop
     )
   }
-  const [campaignAds] = campaignAdsList
 
   return (
     <>
