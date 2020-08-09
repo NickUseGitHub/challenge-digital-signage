@@ -36,7 +36,7 @@ const firstCampaignAds: CampaignAds = {
       name: 'Vdo 4',
       srcUrl: 'https://www.youtube.com/embed/aUd8JjFQ7hg',
       type: 'vdo',
-      duration: 17,
+      duration: 3,
     } as VideoAds,
   ],
   dateRanges: [
@@ -124,13 +124,14 @@ const thirdCampaignAds: CampaignAds = {
       name: 'Video 8',
       srcUrl: 'https://www.youtube.com/embed/yOvT0VvbTPE',
       type: 'vdo',
-      duration: 15,
+      duration: 3,
     } as VideoAds,
     {
       id: '9',
       name: 'Gif 9',
       srcUrl: 'https://media.giphy.com/media/xTiIzqBRXO9nPi4i7C/giphy.gif',
-      type: 'vdo',
+      type: 'image',
+      duration: 3,
     } as ImageAds,
   ],
   dateRanges: [
@@ -154,7 +155,7 @@ const thirdCampaignAds: CampaignAds = {
   timeRanges: [
     getTimeRange('00:00', '02:00'),
     getTimeRange('10:00', '15:00'),
-    getTimeRange('23:00', '23:59'),
+    getTimeRange('18:00', '23:59'),
   ],
 }
 

@@ -12,17 +12,24 @@ type AdsDisplayListType = Array<ImageAdsType | VideoAdsType>
 
 interface AdsDisplayListProps {
   adsList: AdsDisplayListType
+  onAllAdsFinishPlay: () => void
 }
 
-export default function AdsDisplayList({ adsList }: AdsDisplayListProps) {
+export default function AdsDisplayList({
+  adsList,
+  onAllAdsFinishPlay,
+}: AdsDisplayListProps) {
   const [restAdsList, setRestAdsList] = useState<AdsDisplayListType>(adsList)
   const [ads] = shuffle(restAdsList)
 
   useEffect(
-    function () {
-      if (!ads) return
+    function playAdsLoop() {
+      if (!ads) {
+        onAllAdsFinishPlay()
+        return
+      }
 
-      const timeoutId = setTimeout(function () {
+      const timeoutId = setTimeout(function whenAdFinishDisplay() {
         setRestAdsList(
           restAdsList.filter(function removeShownAds(eachAds) {
             return eachAds.id !== ads.id

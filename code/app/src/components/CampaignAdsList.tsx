@@ -15,7 +15,7 @@ export default function CampaignAdsList({
   )
 
   useEffect(
-    function reInitialCampaignAdsList() {
+    function shuffleCampaignAdsList() {
       if (!showingCampaignAds?.campaignAdsList) return
 
       setCampaignAdsList(shuffle(showingCampaignAds.campaignAdsList))
@@ -23,12 +23,25 @@ export default function CampaignAdsList({
     [showingCampaignAds],
   )
 
+  const onAllAdsFinishPlay = () => {
+    const [, ...newCampaignAdsList] = campaignAdsList
+
+    setCampaignAdsList(
+      newCampaignAdsList && newCampaignAdsList.length > 0
+        ? newCampaignAdsList // remove
+        : showingCampaignAds?.campaignAdsList || [], // play new loop
+    )
+  }
   const [campaignAds] = campaignAdsList
 
   return (
     <>
       {campaignAds && campaignAds.adsList && (
-        <AdsDisplay adsList={campaignAds.adsList} />
+        <AdsDisplay
+          key={campaignAds.name}
+          adsList={campaignAds.adsList}
+          onAllAdsFinishPlay={onAllAdsFinishPlay}
+        />
       )}
     </>
   )
