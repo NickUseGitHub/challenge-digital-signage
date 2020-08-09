@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import shuffle from 'lodash/shuffle'
 import { ShowingCampaignAds, CampaignAds } from 'types/campaignAds'
 import AdsDisplay from './AdsDisplayList'
@@ -15,17 +15,7 @@ export default function CampaignAdsList({
   const [campaignAdsList, setCampaignAdsList] = useState<CampaignAds[]>(
     shuffle(showingCampaignAds?.campaignAdsList || []),
   )
-
-  useEffect(
-    function shuffleCampaignAdsList() {
-      if (!showingCampaignAds?.campaignAdsList) return
-
-      setCampaignAdsList(shuffle(showingCampaignAds.campaignAdsList))
-    },
-    [showingCampaignAds],
-  )
-
-  const [campaignAds] = campaignAdsList
+  const [alreadyShuffledCampaignAds] = campaignAdsList
 
   const onAdsAlmostPlayFinish = () => {
     const queryDate = showingCampaignAds?.queryDate
@@ -46,18 +36,18 @@ export default function CampaignAdsList({
             .filter(function filterLastCampaignAdsToPreventShowAtFirst(
               eachCampaignAds,
             ) {
-              return eachCampaignAds.id !== campaignAds.id
+              return eachCampaignAds.id !== alreadyShuffledCampaignAds.id
             })
-            .concat(campaignAds), // play new loop
+            .concat(alreadyShuffledCampaignAds), // play new loop
     )
   }
 
   return (
     <>
-      {campaignAds && campaignAds.adsList && (
+      {alreadyShuffledCampaignAds && alreadyShuffledCampaignAds.adsList && (
         <AdsDisplay
-          key={`${campaignAds.name}_${new Date().getTime()}`}
-          adsList={campaignAds.adsList}
+          key={`${alreadyShuffledCampaignAds.name}_${new Date().getTime()}`}
+          adsList={alreadyShuffledCampaignAds.adsList}
           onAdsAlmostPlayFinish={onAdsAlmostPlayFinish}
           onAllAdsFinishPlay={onAllAdsFinishPlay}
         />
