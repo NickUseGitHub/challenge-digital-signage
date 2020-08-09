@@ -2,7 +2,7 @@ import getDate from './getDate'
 import { Schedule } from 'modules/campaign/types'
 import getTimestamp from './getTimestamp'
 
-// time format should be HH:mm
+// time format should be HH:mm:ss
 export default function getTimeRange(
   startTime: string,
   endTime: string,

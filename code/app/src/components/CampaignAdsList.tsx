@@ -4,10 +4,12 @@ import { ShowingCampaignAds, CampaignAds } from 'types/campaignAds'
 import AdsDisplay from './AdsDisplayList'
 
 interface CampaignAdsListProps {
+  initialShowingCampaignAdsFromApi: () => void
   showingCampaignAds?: ShowingCampaignAds | null
 }
 
 export default function CampaignAdsList({
+  initialShowingCampaignAdsFromApi,
   showingCampaignAds,
 }: CampaignAdsListProps) {
   const [campaignAdsList, setCampaignAdsList] = useState<CampaignAds[]>(
@@ -24,6 +26,15 @@ export default function CampaignAdsList({
   )
 
   const [campaignAds] = campaignAdsList
+
+  const onAdsAlmostPlayFinish = () => {
+    const queryDate = showingCampaignAds?.queryDate
+    const currentTimestamp = new Date().getTime()
+
+    if (!queryDate || currentTimestamp < queryDate) return
+
+    initialShowingCampaignAdsFromApi()
+  }
 
   const onAllAdsFinishPlay = () => {
     const [, ...newCampaignAdsList] = campaignAdsList
@@ -45,8 +56,9 @@ export default function CampaignAdsList({
     <>
       {campaignAds && campaignAds.adsList && (
         <AdsDisplay
-          key={campaignAds.name}
+          key={`${campaignAds.name}_${new Date().getTime()}`}
           adsList={campaignAds.adsList}
+          onAdsAlmostPlayFinish={onAdsAlmostPlayFinish}
           onAllAdsFinishPlay={onAllAdsFinishPlay}
         />
       )}

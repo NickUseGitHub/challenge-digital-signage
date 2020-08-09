@@ -10,7 +10,7 @@ import CampaignAdsList from './CampaignAdsList'
 export default function AdsScreen() {
   const kiosTag = 'K03'
   const showingCampaignAdsContext = useContext(ShowingCampaignAdsContext)
-  const initialShowingCampaignAds = () => {
+  const initialShowingCampaignAdsFromApi = () => {
     BackendApis.getShowingCampaignAds(
       kiosTag,
     ).then((showingCampaignAds: ShowingCampaignAds) =>
@@ -20,7 +20,7 @@ export default function AdsScreen() {
     )
   }
 
-  useEffect(initialShowingCampaignAds, [])
+  useEffect(initialShowingCampaignAdsFromApi, [])
 
   const isShowLoadingComponent = !showingCampaignAdsContext.state
     ?.showingCampaignAds
@@ -30,6 +30,7 @@ export default function AdsScreen() {
       {isShowLoadingComponent === true && <Loading />}
       {showingCampaignAdsContext.state?.showingCampaignAds && (
         <CampaignAdsList
+          initialShowingCampaignAdsFromApi={initialShowingCampaignAdsFromApi}
           showingCampaignAds={
             showingCampaignAdsContext.state.showingCampaignAds
           }

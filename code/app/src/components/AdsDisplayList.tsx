@@ -14,11 +14,13 @@ type AdsDisplayListType = Array<ImageAdsType | VideoAdsType>
 interface AdsDisplayListProps {
   adsList: AdsDisplayListType
   onAllAdsFinishPlay: () => void
+  onAdsAlmostPlayFinish?: () => void
 }
 
 export default function AdsDisplayList({
   adsList,
   onAllAdsFinishPlay,
+  onAdsAlmostPlayFinish,
 }: AdsDisplayListProps) {
   const [restAdsList, setRestAdsList] = useState<AdsDisplayListType>(adsList)
   const [ads] = shuffle(restAdsList)
@@ -41,6 +43,16 @@ export default function AdsDisplayList({
       return () => clearTimeout(timeoutId)
     },
     [ads, restAdsList],
+  )
+
+  useEffect(
+    function beforeCurrentAdsFinishPlay() {
+      if (!ads || typeof onAdsAlmostPlayFinish !== 'function') return
+
+      const timeoutId = setTimeout(onAdsAlmostPlayFinish, ads.duration * 1000)
+      return () => clearTimeout(timeoutId)
+    },
+    [ads, onAdsAlmostPlayFinish],
   )
 
   if (!ads) return null
