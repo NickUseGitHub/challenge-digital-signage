@@ -77,7 +77,7 @@ function transformCampaignAdsListIntoShowingCampaignAds(
       ): FrontendCampaignAds {
         return {
           id: campaignAds.id,
-          ads: campaignAds.ads,
+          adsList: campaignAds.adsList,
           name: campaignAds.name,
         }
       },

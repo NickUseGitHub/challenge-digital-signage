@@ -5,7 +5,7 @@ export interface Ads {
   name: string
   type: AdType
   srcUrl: string
-  duration?: number
+  duration: number
 }
 
 export interface ImageAds extends Ads {}
