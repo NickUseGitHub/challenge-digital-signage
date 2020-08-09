@@ -1,3 +1,12 @@
+export interface GetDateParams {
+  date: number
+  month: number
+  year: string
+  hour?: string
+  minute?: string
+  second?: string
+}
+
 export default function getDate({
   date,
   month,
@@ -5,14 +14,7 @@ export default function getDate({
   hour,
   minute,
   second,
-}: {
-  date: number
-  month: number
-  year: string
-  hour?: string
-  minute?: string
-  second?: string
-}): Date {
+}: GetDateParams): Date {
   return new Date(
     `${month}/${date}/${year} ${hour || '00'}:${minute || '00'}:${
       second || '00'
