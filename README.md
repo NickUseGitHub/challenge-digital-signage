@@ -74,17 +74,17 @@ https://github.com/Out-Of-Box-Technology/challenge-digital-signage/issues
 
 # What have done
 
-| Task                      | Status               |
-| ------------------------- | -------------------- |
-| Design Database           | :white_check_mark:   |
-| APIs                      | :white_check_mark:   |
-| API Docs                  | :white_check_mark:   |
-| Frontend with React       | :white_check_mark:   |
-| Code Quality              | :white_large_square: |
-| Test                      | :white_large_square: |
-| ESlint                    | :white_large_square: |
-| Auto format with prettier | :white_large_square: |
-| Docker-compose            | :white_large_square: |
+| Task                      | Status             |
+| ------------------------- | ------------------ |
+| Design Database           | :white_check_mark: |
+| APIs                      | :white_check_mark: |
+| API Docs                  | :white_check_mark: |
+| Frontend with React       | :white_check_mark: |
+| Code Quality              | :white_check_mark: |
+| Test                      | :white_check_mark: |
+| ESlint                    | :white_check_mark: |
+| Auto format with prettier | :white_check_mark: |
+| Docker-compose            | :white_check_mark: |
 
 ## Docs APIs
 
