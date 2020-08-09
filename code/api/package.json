@@ -8,6 +8,7 @@
     "dev": "nodemon -w src --exec yarn watch-dev",
     "watch-dev": "yarn watch-ts & yarn watch-node",
     "start": "node dist/api/src/index.js",
+    "test": "jest",
     "watch-ts": "tsc -w",
     "watch-node": "nodemon dist/api/src/index.js",
     "typecheck": "tsc --noEmit"
@@ -17,12 +18,15 @@
   "license": "ISC",
   "devDependencies": {
     "@types/boom": "^7.3.0",
+    "@types/jest": "^26.0.9",
     "@types/koa": "^2.11.3",
     "@types/koa-joi-router": "^5.2.3",
     "@types/koa-joi-router-docs": "^1.0.0",
     "@types/koa__cors": "^3.0.1",
     "@types/lodash": "^4.14.159",
+    "jest": "^26.2.2",
     "nodemon": "^2.0.4",
+    "ts-jest": "^26.1.4",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
   },
