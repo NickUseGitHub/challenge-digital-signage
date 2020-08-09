@@ -1,6 +1,6 @@
 import { SwaggerAPI } from 'koa-joi-router-docs'
 import KoaRouter from 'koa-joi-router'
-import campaignRoute from './campaign'
+import campaignRoute from '../modules/campaign/controllers'
 
 const routes = [campaignRoute]
 

@@ -1,20 +1,25 @@
-import React, { useState } from 'react'
-import Loading from 'components/Loading'
-import { ShowingCampaignAds } from 'types/campaignAds'
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+import AdsScreen from 'components/AdsScreen'
+import ShowingCampaignAdsProvider from 'contexts/ShowingCampaignAds'
+import HomePage from 'pages/HomePage'
 
 function App() {
-  const [showingCampaignAds, setShowingCampaignAds] = useState<
-    ShowingCampaignAds
-  >({
-    campaignAdsList: [],
-  })
-
-  const isLoading =
-    !showingCampaignAds ||
-    !showingCampaignAds.campaignAdsList ||
-    showingCampaignAds.campaignAdsList.length === 0
-
-  return <div>{isLoading && <Loading />}</div>
+  return (
+    <ShowingCampaignAdsProvider>
+      <Router>
+        <Switch>
+          <Route path="/:kiosTag">
+            <AdsScreen />
+          </Route>
+          <Route path="/">
+            <HomePage />
+          </Route>
+        </Switch>
+      </Router>
+    </ShowingCampaignAdsProvider>
+  )
 }
 
 export default App

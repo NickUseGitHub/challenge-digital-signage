@@ -10,4 +10,4 @@ cd "$APP_DIRECTORY" && \
 
 cd $CURRENT_PATH
 
-docker-compose up
+docker-compose up --build

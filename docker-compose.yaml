@@ -1,18 +1,19 @@
 version: "3"
-services: 
+services:
   app_static:
     image: nginx:1.19.1
-    volumes: 
+    volumes:
       - ./code/app/build:/usr/share/nginx/html
-    expose: 
+    expose:
       - 80
-    ports: 
+    ports:
       - 3000:80
 
   node_app:
-    build: 
-      context: ./code/api
-    expose: 
+    build:
+      context: ./code
+      dockerfile: "Dockerfile-api"
+    expose:
       - 3001
-    ports: 
+    ports:
       - 3001:3001
