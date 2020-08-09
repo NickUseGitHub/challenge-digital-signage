@@ -42,16 +42,15 @@ export default function CampaignAdsList({
     )
   }
 
+  if (!alreadyShuffledCampaignAds || !alreadyShuffledCampaignAds.adsList)
+    return null
+
   return (
-    <>
-      {alreadyShuffledCampaignAds && alreadyShuffledCampaignAds.adsList && (
-        <AdsDisplay
-          key={`${alreadyShuffledCampaignAds.name}_${new Date().getTime()}`}
-          adsList={alreadyShuffledCampaignAds.adsList}
-          onAdsAlmostPlayFinish={onAdsAlmostPlayFinish}
-          onAllAdsFinishPlay={onAllAdsFinishPlay}
-        />
-      )}
-    </>
+    <AdsDisplay
+      key={`${alreadyShuffledCampaignAds.name}_${new Date().getTime()}`}
+      adsList={alreadyShuffledCampaignAds.adsList}
+      onAdsAlmostPlayFinish={onAdsAlmostPlayFinish}
+      onAllAdsFinishPlay={onAllAdsFinishPlay}
+    />
   )
 }

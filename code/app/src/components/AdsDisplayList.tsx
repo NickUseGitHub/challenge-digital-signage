@@ -42,7 +42,7 @@ export default function AdsDisplayList({
 
       return () => clearTimeout(timeoutId)
     },
-    [ads, restAdsList],
+    [ads, restAdsList, onAllAdsFinishPlay],
   )
 
   useEffect(
