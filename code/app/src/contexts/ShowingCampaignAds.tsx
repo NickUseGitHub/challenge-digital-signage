@@ -1,26 +1,23 @@
 import React, { createContext, useState } from 'react'
-import shuffle from 'lodash/shuffle'
-import { CampaignAds, ShowingCampaignAds } from 'types/campaignAds'
+import { ShowingCampaignAds } from 'types/campaignAds'
 
 interface ShowingCampaignState {
-  shownCampaignList: CampaignAds[]
-  onHoldCampaignList: CampaignAds[]
-  showingCampaignAds?: ShowingCampaignAds
+  showingCampaignAds: ShowingCampaignAds | null
 }
 
 interface ShowingCampaignAdsContextType {
-  state: ShowingCampaignState | null
+  state: ShowingCampaignState
   actions: {
-    randomCampaignAds: () => CampaignAds | null
-    setCampaignAds: (showingCampaignAds: ShowingCampaignAds) => void
+    setShowingCampaignAds: (showingCampaignAds: ShowingCampaignAds) => void
   }
 }
 
 const initiatedShowingCampaignAdsContext: ShowingCampaignAdsContextType = {
-  state: null,
+  state: {
+    showingCampaignAds: null,
+  },
   actions: {
-    randomCampaignAds: () => null,
-    setCampaignAds: () => {},
+    setShowingCampaignAds: () => {},
   },
 }
 
@@ -38,57 +35,13 @@ export default function ShowingCampaignAdsProvider({
   const [showingCampaignState, setShowingCampaignState] = useState<
     ShowingCampaignState
   >({
-    onHoldCampaignList: [],
-    shownCampaignList: [],
+    showingCampaignAds: null,
   })
 
   const showingCampaignAdsContextValue: ShowingCampaignAdsContextType = {
     state: showingCampaignState,
     actions: {
-      randomCampaignAds() {
-        const {
-          shownCampaignList,
-          onHoldCampaignList,
-          showingCampaignAds,
-        } = showingCampaignState
-        if (
-          !showingCampaignAds ||
-          !showingCampaignAds.campaignAdsList ||
-          showingCampaignAds.campaignAdsList.length === 0
-        )
-          return null
-
-        // start the whole ads again
-        if (!onHoldCampaignList || onHoldCampaignList.length === 0) {
-          const [
-            shulffledCampaignAds,
-            ...restCampaignList
-          ] = showingCampaignAds.campaignAdsList
-
-          setShowingCampaignState({
-            ...showingCampaignState,
-            onHoldCampaignList: restCampaignList,
-            shownCampaignList: [shulffledCampaignAds],
-          })
-
-          return shulffledCampaignAds
-        } else {
-          const [shulffledCampaignAds, ...restCampaignList] = shuffle(
-            onHoldCampaignList,
-          )
-
-          setShowingCampaignState({
-            ...showingCampaignState,
-            onHoldCampaignList: (restCampaignList || []).filter(
-              (campaignAds) => !!campaignAds,
-            ),
-            shownCampaignList: [...shownCampaignList, shulffledCampaignAds],
-          })
-
-          return shulffledCampaignAds
-        }
-      },
-      setCampaignAds(showingCampaignAds: ShowingCampaignAds) {
+      setShowingCampaignAds(showingCampaignAds: ShowingCampaignAds) {
         setShowingCampaignState({
           ...showingCampaignState,
           showingCampaignAds,
